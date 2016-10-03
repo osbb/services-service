@@ -1,7 +1,7 @@
 import { getRabbitConnection } from './rabbit-connection';
 import { getMongoConnection } from './mongo-connection';
 import winston from 'winston';
-import * as Services from './services';
+import * as Services from './db';
 
 function sendResponseToMsg(ch, msg, data) {
   return ch.sendToQueue(
