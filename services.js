@@ -5,17 +5,13 @@ export function load(db) {
 }
 
 export function update(db, service) {
-  const { title } = service;
-
   return db.collection('services')
-    .updateOne({ _id: ObjectId(service._id) }, { $set: { title } })
+    .updateOne({ _id: ObjectId(service._id) }, { $set: service })
     .then(() => db.collection('services').findOne({ _id: ObjectId(service._id) }, {}));
 }
 
 export function create(db, service) {
-  const { title } = service;
-
   return db.collection('services')
-    .insertOne({ title }, {})
+    .insertOne(service, {})
     .then(res => db.collection('services').findOne({ _id: ObjectId(res.insertedId) }, {}));
 }
